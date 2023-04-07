@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Header from "./Container/Header";
 import Filter from "./Container/Filter";
 import CardArea from "./Container/CardArea";
-import DropCart from "./Container/DropCart";
 import SearchBar from "./Components/SearchBar";
 import "./App.css";
 import { dummyData, ProductObject } from "./data/dummyData";
@@ -118,8 +117,9 @@ function App() {
     setInputSearchValue(event.target.value);
   };
 
-  const handleAddToCart = (newProduct: ProductObject): void => {
-    setCartArray((prevArray) => [...prevArray, newProduct]);
+  const handleAddToCart = (newProduct: ProductObject, amount: number) => {
+    const newItems = new Array(amount).fill(newProduct);
+    setCartArray((prevArray) => [...prevArray, ...newItems]);
   };
 
   const handleModal = () => {
@@ -185,7 +185,7 @@ function App() {
   };
 
   const handleCheckout = () => {
-    alert("call stripe");
+    alert("call banking");
   };
 
   const handleModalRender = (array: CartItemsObject[]): JSX.Element => {
@@ -229,7 +229,9 @@ function App() {
         />
         <CardArea productArray={productArray} handleRender={handleRender} />
       </div>
-      <DropCart />
+      <footer>© 2023 Copyright - Markus Fehringer </footer>
+
+
     </div>
   );
 }

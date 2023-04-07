@@ -13,7 +13,7 @@ const Header: React.FC<Props> = (props) => {
     <div className="header">
       <div id="logo">
         <img id="logo-img" src={logo} alt="logo" />
-        <div id="logo-text">Fresh Harvest</div>
+        <div id="logo-text">Healthy Harvest</div>
       </div>
       {props.children}
       <button id="checkout-button" onClick={() => props.handleModal()} > <div className="material-symbols-outlined" id="cart-icon">shopping_cart</div> ({props.itemsInCart})</button>

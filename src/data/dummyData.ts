@@ -5,7 +5,7 @@ export type ProductObject = {
   cal: number;
 };
 
-export const dummyData = [
+export const dummyData: ProductObject[] = [
   {
     name: "Apple",
     category: "fruit",
