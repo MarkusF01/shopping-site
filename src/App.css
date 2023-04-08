@@ -5,7 +5,8 @@
 
 body, html, .App, #root, #wrapper{
   margin: 0;
-  height: 100%;
+  min-height: 100%;
+  max-height: fit-content;
 }
 
 #wrapper {
@@ -19,7 +20,7 @@ body, html, .App, #root, #wrapper{
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin: 1vh auto;
+  margin: 2vh 0vh;
   position: sticky;
   top: 0;
   height: 6vh;
