@@ -6,7 +6,7 @@ import SearchBar from "./Components/SearchBar";
 import "./App.css";
 import { dummyData, ProductObject } from "./data/dummyData";
 import Card from "./Components/Card";
-import Modal from "./Components/Modal";
+import Modal from "./Container/Modal";
 import ModalCartItem from "./Components/ModalCartItem";
 
 export type UserFilterObject = {
@@ -190,7 +190,7 @@ function App() {
 
   const handleModalRender = (array: CartItemsObject[]): JSX.Element => {
     return (
-      <div className="modal-area">
+      <div id="modal-items-wrapper">
         {array.map((element) => (
           <ModalCartItem
             key={element.name}
@@ -203,7 +203,7 @@ function App() {
         <div className="total-row">
           <div>Item Count: {cartItemsCount}</div>
           <div>Total: {getTotalSum()}€</div>
-          <button onClick={handleCheckout}>Checkout</button>
+          <button className="material-symbols-outlined" id="checkout-btn" onClick={handleCheckout}>shopping_cart_checkout</button>
         </div>
       </div>
     );
@@ -215,20 +215,25 @@ function App() {
         <SearchBar handleSearchChange={handleSearchChange} />
       </Header>
 
-      {showModal ? (
-        <Modal
-          handleModalRender={handleModalRender}
-          cartArray={groupedCartArray}
-        />
-      ) : null}
 
-      <div className="main-area">
-        <Filter
-          changeFilterObject={changeFilterObject}
-          currentFilterValues={userFilter}
-        />
-        <CardArea productArray={productArray} handleRender={handleRender} />
-      </div>
+
+      {/* <div className="main-modal"> */}
+        <div className="main-area">
+          <Filter
+            changeFilterObject={changeFilterObject}
+            currentFilterValues={userFilter}
+          />
+          <CardArea productArray={productArray} handleRender={handleRender} />
+        </div>
+        {showModal ? (
+          <Modal
+            handleModalRender={handleModalRender}
+            cartArray={groupedCartArray}
+            handleModal={handleModal}
+          />
+        ) : null}
+
+      {/* </div> */}
       <footer>© 2023 Copyright - Markus Fehringer </footer>
 
 

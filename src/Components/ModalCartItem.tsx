@@ -13,18 +13,21 @@ type Props = {
 const ModalCartItem: React.FC<Props> = (props) => {
   return (
     <div className="cart-item" key={props.element.name}>
-      {props.element.name}
-      <label htmlFor="quantity"> Quantity: </label>
-      <input
-        id="quantity"
-        type="number"
-        min={1}
-        value={props.element.count}
-        onChange={(event) => props.handleQuantity(event, props.element.name)}
-      />
+      <div>
+        <input
+          id="modal-amount-change"
+          type="number"
+          min={1}
+          value={props.element.count}
+          onChange={(event) => props.handleQuantity(event, props.element.name)}
+        />
+        x {props.element.name}        
+      </div>
+
+
       <div className="price">{props.element.cumPrice()}€</div>
-      <button onClick={() => props.handleRemove(props.element.name)}>
-        Remove
+      <button className="material-symbols-outlined" onClick={() => props.handleRemove(props.element.name)}>
+        clear
       </button>
     </div>
   );

@@ -16,7 +16,15 @@ const Header: React.FC<Props> = (props) => {
         <div id="logo-text">Healthy Harvest</div>
       </div>
       {props.children}
-      <button id="checkout-button" onClick={() => props.handleModal()} > <div className="material-symbols-outlined" id="cart-icon">shopping_cart</div> ({props.itemsInCart})</button>
+      <div id="header-icons">
+        <button className="material-symbols-outlined">dark_mode</button>
+        <button className="material-symbols-outlined">account_circle</button>
+        <button id="shopping-cart-button" onClick={() => props.handleModal()} >
+          <div className="material-symbols-outlined" id="cart-icon">shopping_cart</div>
+          <div id="amount-in-cart">{props.itemsInCart}</div>
+        </button>
+      </div>
+
     </div>
   );
 };

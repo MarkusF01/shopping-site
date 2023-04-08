@@ -5,7 +5,7 @@ type Props = {
 const SearchBar: React.FC<Props> = (props) => {
   return (
     <div className="search-bar">
-      <input className="search-input" type="text" onChange={props.handleSearchChange} placeholder="Apple" />
+      <input className="search-input" type="text" onChange={props.handleSearchChange} placeholder="Search" />
       <button className="material-symbols-outlined" id="search-button">search</button>
     </div>
   );
