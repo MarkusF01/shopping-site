@@ -3,6 +3,7 @@ import { ProductObject } from "../data/dummyData";
 
 type Props = {
   element: ProductObject;
+  isLightTheme: boolean;
   handleAddToCart: (newProduct: ProductObject, amount: number) => void;
 };
 
@@ -18,7 +19,14 @@ const Card: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className={props.element.category == "fruit" ? "product-card-fruit" : "product-card-veg"} key={props.element.name}>
+    <div className=
+      {
+        props.element.category == "fruit" ?
+          props.isLightTheme ? "product-card-fruit-light" : "product-card-fruit-dark"
+          :
+          props.isLightTheme ? "product-card-veg-light" : "product-card-veg-dark" 
+      }
+      key={props.element.name}>
       <img id="product-img" src={getImageUrl(props.element.name.toLowerCase().replace(/\s/g, ""))} />
       <div className="product-card-description">
         <div id="card-name">{props.element.name}</div>
@@ -27,7 +35,7 @@ const Card: React.FC<Props> = (props) => {
         <div id="card-bottom">
           <div id="card-price">{props.element.price}€/kg</div>
           <div id="card-add">
-            <select id="card-select" defaultValue={"1"} name="amount" onChange={handleAmountChange}>
+            <select id={props.isLightTheme ? "card-select-light" : "card-select-dark" } defaultValue={"1"} name="amount" onChange={handleAmountChange}>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>

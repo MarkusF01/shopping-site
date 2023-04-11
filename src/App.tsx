@@ -28,7 +28,7 @@ function App() {
     price: 10,
     cal: 0,
   } as UserFilterObject);
-
+  const [isLightTheme, setTheme] = useState(true);
   const [productArray, setProductArray] = useState<ProductObject[]>(dummyData);
   const [cartArray, setCartArray] = useState<ProductObject[]>([]);
   const [inputSearchValue, setInputSearchValue] = useState("");
@@ -37,6 +37,10 @@ function App() {
   const [groupedCartArray, setGroupedCartArray] = useState<CartItemsObject[]>(
     []
   );
+
+  const saleProductArray: ProductObject[] = [dummyData[9], dummyData[18], dummyData[10], dummyData[5], dummyData[12]];
+  const exoticProductArray: ProductObject[] = [dummyData[16], dummyData[20], dummyData[22], dummyData[24], dummyData[14]];
+
 
   useEffect(() => {
     setProductArray(createFilterdArray(dummyData));
@@ -132,6 +136,7 @@ function App() {
         {array.map((element) => (
           <Card
             key={element.name}
+            isLightTheme={isLightTheme}
             element={element}
             handleAddToCart={handleAddToCart}
           />
@@ -209,31 +214,37 @@ function App() {
     );
   };
 
+  const handleThemeChange = () => {
+    setTheme((prevTheme) => !prevTheme);
+  }
+
   return (
-    <div id="wrapper">
-      <Header itemsInCart={cartItemsCount} handleModal={handleModal}>
-        <SearchBar handleSearchChange={handleSearchChange} />
+    <div id={isLightTheme ? "wrapper-light" : "wrapper-dark"}>
+      <Header itemsInCart={cartItemsCount} handleModal={handleModal} handleThemeChange={handleThemeChange} isLightTheme={isLightTheme}>
+        <SearchBar handleSearchChange={handleSearchChange} isLightTheme={isLightTheme} />
       </Header>
 
+      <div className="product-header">On Sale</div>
+      <CardArea productArray={saleProductArray} handleRender={handleRender} />
+      <div className="product-header">Exotic</div>
+      <CardArea productArray={exoticProductArray} handleRender={handleRender} />
+      <div className="product-header">All Items</div>
+      <div className="main-area">
+        <Filter
+          changeFilterObject={changeFilterObject}
+          currentFilterValues={userFilter}
+        />
+        <CardArea productArray={productArray} handleRender={handleRender} />
+      </div>
+      {showModal ? (
+        <Modal
+          isLightTheme={isLightTheme}
+          handleModalRender={handleModalRender}
+          cartArray={groupedCartArray}
+          handleModal={handleModal}
+        />
+      ) : null}
 
-
-      {/* <div className="main-modal"> */}
-        <div className="main-area">
-          <Filter
-            changeFilterObject={changeFilterObject}
-            currentFilterValues={userFilter}
-          />
-          <CardArea productArray={productArray} handleRender={handleRender} />
-        </div>
-        {showModal ? (
-          <Modal
-            handleModalRender={handleModalRender}
-            cartArray={groupedCartArray}
-            handleModal={handleModal}
-          />
-        ) : null}
-
-      {/* </div> */}
       <footer>© 2023 Copyright - Markus Fehringer </footer>
 
 

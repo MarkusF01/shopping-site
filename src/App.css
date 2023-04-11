@@ -3,7 +3,7 @@
   font-family: "Quicksand", sans-serif;
 }
 
-body, html, .App, #root, #wrapper{
+body, html, .App, #root, #wrapper-light, #wrapper-dark{
   margin: 0;
   height: 100%;
 }
@@ -16,12 +16,21 @@ button:focus {
   outline: none;
 }
 
-#wrapper {
+#wrapper-light, #wrapper-dark {
+  height: fit-content;
   display: flex;
   flex-direction: column;
+  background-color: rgb(40, 40, 40);
+  color: whitesmoke;
+  padding: 6vh 0vh 0vh 0vh;
 }
 
-.header {
+#wrapper-light {
+  background-color: white;
+  color: black;
+}
+
+.header-light, .header-dark {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,10 +40,16 @@ button:focus {
   top: 0;
   height: 6vh;
   z-index: 999;
+  padding: 1vh 5vw 1vh 5vw;
+}
+
+.header-light {
   background-color: white;
   box-shadow: 0px 2px 2px gray;
-  padding: 1vh 23.5vh 0vh 5vh;
-  margin: 0vh 0vh 10vh 0vh;
+}
+
+.header-dark {
+  background-color: rgb(31, 31, 31);
 }
 
 #logo {
@@ -57,8 +72,8 @@ button:focus {
   font-size: 3vh;
 }
 
-.search-bar {
-  border: 1px solid gray;
+.search-bar-light, .search-bar-dark {
+  border: 1px solid rgb(98, 98, 98);
   width: 30vw;
   height: 4vh;
   border-radius: 10px;
@@ -66,23 +81,30 @@ button:focus {
   display: flex;
   justify-content: space-between;
   padding: 0vh 1vh;
-  /* margin: 0 0 0 -20vh; */
+}
+
+.search-bar-dark {
+  background-color: rgb(40, 40, 40);
 }
 
 .search-input {
   background-color: inherit;
   width: 100%;
   border: none;
-  color: black;
+  color: inherit;
 }
 
 .search-input::placeholder {
-  color: black;
+  color: inherit;
   opacity: 0.6;
 }
 
-.search-bar:hover {
+.search-bar-light:hover {
   background-color: rgb(250, 250, 250);
+}
+
+.search-bar-dark:hover {
+  background-color: rgb(51, 51, 51);
 }
 
 .search-input:focus {
@@ -92,7 +114,7 @@ button:focus {
 #search-button {
   border: none;
   font-size: 2.5vmin;
-  color: black;
+  color: inherit;
   background-color: inherit;
 }
 
@@ -100,7 +122,21 @@ button:focus {
   cursor: pointer;
 }
 
-#shopping-cart-button {
+.header-dark button, .header-light button {
+  color: inherit;
+  background-color: inherit;
+  font-size: 3vmin;
+  border: none;
+}
+
+.header-light button:hover, .header-dark button:hover {
+  cursor: pointer;
+}
+.header-light button:focus, .header-dark button:focus{
+  outline: none;
+}
+
+#shopping-cart-button{
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -110,7 +146,6 @@ button:focus {
 }
 
 #shopping-cart-button:hover {
-  cursor: pointer;
   animation: wiggle 300ms ease-in forwards;
   transition: transform 100ms;
 }
@@ -143,11 +178,37 @@ button:focus {
   font-size: 3vh;
 }
 
-.main-modal{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
+#theme-button, #user-button {
+  transition: transform 100ms ease-in;
+}
+
+#theme-button:hover, #user-button:hover {
+  transform: scale(1.1);
+}
+
+#theme-button:active {
+  animation: spin 500ms;
+}
+
+@keyframes spin {
+  25%{
+    transform: rotate(90deg)
+  }
+  50%{
+    transform: rotate(180deg);
+  }
+  75%{
+    transform: rotate(270deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+.product-header {
+  font-size: 6vmin;
+  padding: 1vh 2vw;
+  background-color: inherit;
 }
 
 #modal-wrapper {
@@ -163,7 +224,7 @@ button:focus {
   background-color: rgba(0,0,0,0.6);
 }
 
-.modal-area {
+.modal-area-light, .modal-area-dark{
   display: flex;
   align-items: center;
   position: fixed;
@@ -171,13 +232,17 @@ button:focus {
   right: 0%;
   height: 80%;
   width: 50vw;
-  background-color: white;
-  border: 1px solid black;
+  background-color: whitesmoke;
   padding: 2vmin;
   overflow-y: auto;
 }
 
+.modal-area-dark{
+  background-color: rgb(51, 51, 51);
+}
+
 #modal-amount-change {
+  color: inherit;
   width: 5vh;
   background-color: inherit;
   border: 1px solid gray;
@@ -188,12 +253,13 @@ button:focus {
   width: 100%;
 }
 
-.modal-area button {
+.modal-area-dark button, .modal-area-light button {
+  color: inherit;
   background-color: inherit;
   border: none;
 }
 
-.modal-area button:hover {
+.modal-area-dark button:hover, .modal-area-light button:hover {
   cursor: pointer;
 }
 
@@ -226,44 +292,58 @@ button:focus {
 
 
 .main-area {
-  margin: 6vh 10vw;
+  padding: 0vh 10vw;
   flex: 1;
   display: flex;
-  height: fit-content;
+  min-height: 90vh;
   flex-direction: row;
-
+  background-color: inherit;
 }
 
 .card-area {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  background-color: inherit;
 }
 
 .filter-area {
   display: flex;
   flex-direction: column;
-  font-size: 2vmin;
+  font-size: 1.7vmin;
 }
 
-.product-card-fruit, .product-card-veg {
+.product-card-fruit-light,
+.product-card-fruit-dark, 
+.product-card-veg-light, 
+.product-card-veg-dark {
   margin: 1rem;
   display: flex;
   flex-direction: column;
   width: 30vmin;
   height: 40vmin;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   transition: box-shadow 300ms;
 }
 
-.product-card-fruit {
+.product-card-fruit-light {
   border: 1px solid red;
   background-color: rgb(255, 208, 208);
 }
 
-.product-card-veg {
+.product-card-fruit-dark {
+  border: 1px solid red;
+  background-color: rgb(52, 24, 24);
+}
+
+.product-card-veg-light {
   border: 1px solid green;
-  background-color: rgb(221, 255, 221);
+  background-color: rgb(183, 252, 183);
+}
+
+.product-card-veg-dark {
+  border: 1px solid green;
+  background-color: rgb(23, 47, 23);
 }
 
 .product-card-fruit:hover, .product-card-veg:hover {
@@ -271,8 +351,8 @@ button:focus {
 }
 
 #product-img {
-  border-top-right-radius: inherit;
-  border-top-left-radius: inherit;
+  /* border-top-right-radius: inherit;
+  border-top-left-radius: inherit; */
   object-fit: cover;
   height: 50%;
   z-index: 0;
@@ -305,7 +385,11 @@ button:focus {
   font-size: 3vmin;
 }
 
-#card-add {
+.product-card-fruit-dark #card-add,
+.product-card-veg-dark #card-add,
+.product-card-fruit-light #card-add,
+.product-card-veg-light #card-add {
+  color: inherit;
   background-color: inherit;
   border: 1px solid white;
   border-radius: 5px;
@@ -314,18 +398,33 @@ button:focus {
   display: flex;
 }
 
-#card-select {
+.product-card-fruit-dark #card-add,
+.product-card-veg-dark #card-add {
+  border: 1px solid black; 
+}
+
+#card-select-light, #card-select-dark {
   width: 5vmin;
+  color: inherit;
   background-color: inherit;
   border: none;
 }
 
-#card-select:focus {
+#card-select-light option {
+  background-color: white;
+}
+
+#card-select-dark option {
+  background-color: rgb(59, 59, 59);
+}
+
+#card-select-light:focus, #card-select-dark:focus {
   outline: none;
 }
 
 #card-add-button {
   background-color: inherit;
+  color: inherit;
   border: none;
   transition: transform 100ms;
 }
@@ -348,5 +447,6 @@ button:focus {
 footer {
   padding: 1vh;
   margin: 0;
+  background-color: inherit;
 }
 
