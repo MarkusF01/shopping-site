@@ -1,4 +1,5 @@
 import { ProductObject } from "../data/dummyData";
+import "./CardArea.css";
 
 type Props = {
   productArray: ProductObject[];

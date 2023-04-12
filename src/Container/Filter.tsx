@@ -24,7 +24,7 @@ const Filter: React.FC<Props> = (props) => {
         id="price"
         type="range"
         min="0"
-        max="10"
+        max="7"
         step="0.1"
         defaultValue={10}
       />
@@ -38,9 +38,9 @@ const Filter: React.FC<Props> = (props) => {
         id="cal"
         type="range"
         min="0"
-        max="100"
+        max="150"
         step="1"
-        defaultValue={0}
+        defaultValue={150}
       />
       <label htmlFor="category">Category</label>
       <select defaultValue={"mixed"}

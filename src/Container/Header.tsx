@@ -1,5 +1,6 @@
 import SearchBar from "../Components/SearchBar";
 import React from "react";
+import "./Header.css";
 import logo from '../assets/logo.png';
 
 type Props = {

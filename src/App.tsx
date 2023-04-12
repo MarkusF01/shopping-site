@@ -82,7 +82,7 @@ function App() {
       if (category !== "mixed" && product.category !== category) {
         return false;
       }
-      if (product.price > price || product.cal < cal) {
+      if (product.price > price || product.cal > cal) {
         return false;
       }
       return true;
@@ -229,6 +229,7 @@ function App() {
       <div className="product-header">Exotic</div>
       <CardArea productArray={exoticProductArray} handleRender={handleRender} />
       <div className="product-header">All Items</div>
+
       <div className="main-area">
         <Filter
           changeFilterObject={changeFilterObject}
@@ -236,14 +237,15 @@ function App() {
         />
         <CardArea productArray={productArray} handleRender={handleRender} />
       </div>
-      {showModal ? (
+
+      {showModal &&
         <Modal
           isLightTheme={isLightTheme}
           handleModalRender={handleModalRender}
           cartArray={groupedCartArray}
           handleModal={handleModal}
         />
-      ) : null}
+      }
 
       <footer>© 2023 Copyright - Markus Fehringer </footer>
 
