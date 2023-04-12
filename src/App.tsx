@@ -25,8 +25,8 @@ export type CartItemsObject = {
 function App() {
   const [userFilter, setUserFilter] = useState({
     category: "mixed",
-    price: 10,
-    cal: 0,
+    price: 7,
+    cal: 150,
   } as UserFilterObject);
   const [isLightTheme, setTheme] = useState(true);
   const [productArray, setProductArray] = useState<ProductObject[]>(dummyData);
